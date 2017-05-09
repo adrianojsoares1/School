@@ -11,7 +11,7 @@ interface R{double f(double x, double y, double z);}
 
 public class Integration {
 
-    private static double TrapezoidMethod(double a, double b, int N, InputExpression x){
+    private static double Trapezoid(double a, double b, int N, InputExpression x){
 
         double d = (b - a) / N;
         double sum = 0; //First + Last sum
@@ -33,7 +33,7 @@ public class Integration {
         return d * sum;
     }
     //Simpson Method of Integration
-    private static double SimpsonMethod(double a, double b, int N, InputExpression x){
+    private static double Simpson(double a, double b, int N, InputExpression x){
         double d = (b - a) / (N - 1);
         double sum = (double)(1 / 3) * (x.f(a) + x.f(b));
 
@@ -61,8 +61,8 @@ public class Integration {
                 (Math.pow(interval_2, z) - Math.pow(interval_1, z))) *
                 (y - x) * (1 / Math.pow(interval_2, z));
 
-        double Trap_1 = TrapezoidMethod(1, 4, interval_1, equation);
-        double Trap_2 = TrapezoidMethod(1, 4, interval_2, equation);
+        double Trap_1 = Trapezoid(1, 4, interval_1, equation);
+        double Trap_2 = Trapezoid(1, 4, interval_2, equation);
         double Trap_3 = richardson.f(Trap_1, Trap_2, 4);
 
         double Midpoint_1 = Midpoint(1, 4, interval_1, equation);
@@ -70,8 +70,8 @@ public class Integration {
         double Midpoint_3 = Midpoint_2 + (interval_2 * interval_1) / (interval_2 - interval_1) *
                 (Midpoint_2 - Midpoint_1) * (1/interval_2);
 
-        double Simpson_1 = SimpsonMethod(1, 4, interval_1, equation);
-        double Simpson_2 = SimpsonMethod(1, 4, interval_2, equation);
+        double Simpson_1 = Simpson(1, 4, interval_1, equation);
+        double Simpson_2 = Simpson(1, 4, interval_2, equation);
         double Simpson_3 = richardson.f(Simpson_1, Simpson_2, 4);
 
 
